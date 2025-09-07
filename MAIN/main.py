@@ -1,5 +1,10 @@
+import pandas as pd
 from API import api
 from UI import ui
+
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", None)
+pd.set_option("display.max_rows", None)
 
 def main():
     df = api.cargar_datos()
