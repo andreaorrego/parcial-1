@@ -30,20 +30,10 @@ def cargar_datos():
 
     return df_limpio
 
-def filtrar_departamento(df_limpio, departamento):
-    departamento = limpiar_texto(pd.Series([departamento]))[0]
-    return df_limpio[df_limpio["Departamento"] == departamento]
-
-def filtrar_municipio(df_limpio, municipio):
-    municipio = limpiar_texto(pd.Series([municipio]))[0]
-    return df_limpio[df_limpio["Municipio"] == municipio]
-
-def filtrar_cultivo(df_limpio, cultivo, cantidad):
-    cultivo = limpiar_texto(pd.Series([cultivo]))[0]
-    return df_limpio[df_limpio["Cultivo"] == cultivo].head(cantidad)
-
-def consultar_registro(df_limpio, cantidad):
-    return df_limpio.head(cantidad)
+def configurar_display():
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.width", None)
+    pd.set_option("display.max_rows", None)
 
 def municipios_por_departamento(df_limpio, departamento):
     filtrado = df_limpio[(df_limpio["Departamento"].str.lower().str.strip() == departamento.lower().strip())]
@@ -52,16 +42,14 @@ def municipios_por_departamento(df_limpio, departamento):
 def cultivos_por_municipio(df_limpio, departamento, municipio):
     filtrado = df_limpio[
         (df_limpio["Departamento"].str.lower().str.strip() == departamento.lower().strip()) &
-        (df_limpio["Municipio"].str.lower().str.strip() == municipio.lower().strip())
-    ]
+        (df_limpio["Municipio"].str.lower().str.strip() == municipio.lower().strip())]
     return sorted(filtrado["Cultivo"].str.lower().str.strip().unique())
 
 def filtrar_datos(df_limpio, departamento, municipio, cultivo, cantidad):
     filtrado = df_limpio[
         (df_limpio["Departamento"] == departamento.lower().strip()) &
         (df_limpio["Municipio"] == municipio.lower().strip()) &
-        (df_limpio["Cultivo"] == cultivo.lower().strip())
-    ]
+        (df_limpio["Cultivo"] == cultivo.lower().strip())]
 
     filtrado = filtrado.reset_index(drop = True)
     filtrado.index = filtrado.index + 1 

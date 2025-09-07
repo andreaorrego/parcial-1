@@ -1,19 +1,15 @@
-import pandas as pd
 from API import api
 from UI import ui
 
-pd.set_option("display.max_columns", None)
-pd.set_option("display.width", None)
-pd.set_option("display.max_rows", None)
-
 def main():
     df = api.cargar_datos()
+    api.configurar_display()
 
     while True:
         print("\nRESULTADO LABORATORIO DE SUELOS")
 
         departamento = ui.pedir_departamento()
-        resultado = (api.filtrar_departamento(df, departamento))
+        resultado = api.filtrar_datos(df, departamento, "", "", None)
 
         municipios = api.municipios_por_departamento(df, departamento)
 
@@ -26,7 +22,7 @@ def main():
             return main()
 
         municipio = ui.pedir_municipio()
-        resultado = (api.filtrar_municipio(df, municipio))
+        resultado = api.filtrar_datos(df, departamento, municipio, "", None)
 
         cultivos = api.cultivos_por_municipio(df, departamento, municipio)
 
