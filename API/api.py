@@ -1,8 +1,9 @@
 import pandas as pd
 
 def limpiar_texto(serie: pd.Series) -> pd.Series:
-    return (serie.astype(str).str.strip().str.lower().str.replace("á", "a", regex=False).str.replace("é", "e", regex=False)
-            .str.replace("í", "i", regex=False).str.replace("ó", "o", regex=False).str.replace("ú", "u", regex=False)
+    return (serie.astype(str).str.strip().str.lower().str.replace("á", "a", regex=False)
+            .str.replace("é", "e", regex=False).str.replace("í", "i", regex=False)
+            .str.replace("ó", "o", regex=False).str.replace("ú", "u", regex=False)
             .str.replace("ñ", "n", regex=False))
 
 def cargar_datos():

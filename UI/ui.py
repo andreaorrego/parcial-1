@@ -24,8 +24,8 @@ def mostrar_resultados(resultado):
         print(resultado[['Departamento', 'Municipio', 'Cultivo', 'Topografia']]) 
         mediana(resultado)
 
-titulos = ['Departamento', 'Municipio', 'Cultivo', 'Topografia', 'pH', 'Fósforo (P)', 'Aluminio (Al)', 'Calcio (Ca)',
-           'Potasio (K)', 'Sodio (Na)', 'Zinc (Zn)']
+titulos = ['Departamento', 'Municipio', 'Cultivo', 'Topografia', 'pH', 'Fósforo (P)', 
+           'Aluminio (Al)', 'Calcio (Ca)', 'Potasio (K)', 'Sodio (Na)', 'Zinc (Zn)']
 
 def resultados_risaralda(resultado):
     if resultado.empty:
@@ -33,5 +33,4 @@ def resultados_risaralda(resultado):
     else:
         print(resultado[titulos])
         mediana(resultado)
-
                  
